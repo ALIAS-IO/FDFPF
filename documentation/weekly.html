@@ -1,0 +1,92 @@
+---
+layout: layout
+permalink: /weekly/
+---
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-5 text-center">Weekly Documentation</h1>
+    <div class="timeline">
+
+      <!-- ITEM 1 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-animate">
+            <h4>Embedded Programming</h4>
+            <p>Writing firmware and microcontroller programs to control hardware components.</p>
+          </div>
+          <button class="btn btn-sm btn-outline-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal1">
+            Read More
+          </button>
+        </div>
+      </div>
+
+      <!-- ITEM 2 -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-animate">
+            <h4>Electronics Design</h4>
+            <p>Designing circuit boards and creating electronic schematics.</p>
+          </div>
+          <button class="btn btn-sm btn-outline-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal2">
+            Read More
+          </button>
+        </div>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-animate">
+            <h4>Electronics Production</h4>
+            <p>Assembling and soldering electronic circuits.</p>
+          </div>
+          <button class="btn btn-sm btn-outline-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal3">
+            Read More
+          </button>
+        </div>
+      </div>
+
+      <!-- ITEM 4 -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-animate">
+            <h4>2D Computer Controlled Machining</h4>
+            <p>Using CNC machines for precision fabrication.</p>
+          </div>
+          <button class="btn btn-sm btn-outline-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal4">
+            Read More
+          </button>
+        </div>
+      </div>
+
+      <!-- ITEM 5 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-animate">
+            <h4>Interface & Applications Programming</h4>
+            <p>Developing applications to interact with hardware systems.</p>
+          </div>
+          <button class="btn btn-sm btn-outline-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal5">
+            Read More
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= Modals ================= -->
+{% include modals/modal1.html %}
+{% include modals/modal2.html %}
+{% include modals/modal3.html %}
+{% include modals/modal4.html %}
+{% include modals/modal5.html %}
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Timeline Scroll Animation -->
+<script src="{{ 'js/timelineScroll.js' | relative_url }}"></script>
+<!-- Modal Links for other Modals -->
+<script src="{{ 'js/modalLinks.js' | relative_url }}"></script>

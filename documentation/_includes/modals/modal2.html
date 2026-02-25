@@ -1,0 +1,50 @@
+<!-- Modal 2 -->
+<div class="modal fade" id="modal2" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Electronics Design</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <h3 class="my-2">PCB Designing</h3>
+        <p>For this assignment, I decided to use Fusion to design the PCB.</p>
+
+        <p>First, I created the schematics for the PCB, adding the pin headers, button, led, and resistor.</p>
+        <div class="text-center my-3">
+          <img src="{{ 'images/ElecDesign/schematics.png' | relative_url }}" 
+              alt="Design Schematics" 
+              class="modal-img">
+        </div>
+
+        <p>Next, I switched to the PCB view and routed the components together, making sure that there were no violations.</p>
+        <div class="text-center my-3">
+          <img src="{{ 'images/ElecDesign/pcb.png' | relative_url }}" 
+              alt="PCB Design" 
+              class="modal-img">
+        </div>
+
+        <p>Finally, I turned off all the layers, leaving only the board trace and outline.</p>
+        <div class="text-center my-3">
+          <figure class="d-inline-block mx-2">
+            <img src="{{ 'images/ElecDesign/trace.png' | relative_url }}" 
+              alt="PCB Trace" 
+              class="modal-img">
+            <figcaption>PCB Trace</figcaption>
+          </figure>
+          <figure class="d-inline-block mx-2">
+            <img src="{{ 'images/ElecDesign/outline.png' | relative_url }}" 
+              alt="PCB Outline" 
+              class="modal-img">
+            <figcaption>PCB Outline</figcaption>
+          </figure>
+        </div>
+
+        <p>
+          For the milling and soldering, they were documented under 
+          <a href="#" data-bs-toggle="modal" data-bs-target="#modal3">Electronics Production</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

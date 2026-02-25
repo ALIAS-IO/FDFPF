@@ -1,0 +1,42 @@
+<nav class="navbar fixed-top bg-dark">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+
+    <!-- Logo -->
+    <a class="navbar-brand" href="{{ '/' | relative_url }}">
+      <img src="{{ 'images/logo.svg' | relative_url }}" alt="Logo" height="50">
+    </a>
+
+    <!-- Nav Links -->
+    <ul class="navbar-nav d-flex flex-row justify-content-center mx-auto">
+      
+      <li class="nav-item">
+        <a href="{{ '/' | relative_url }}"
+           class="nav-link {% if page.url == '/' %}active{% endif %}">
+          Home
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{ '/about/' | relative_url }}"
+           class="nav-link {% if page.url == '/about/' %}active{% endif %}">
+          About
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{ '/weekly/' | relative_url }}"
+           class="nav-link {% if page.url == '/weekly/' %}active{% endif %}">
+          Weekly Documentation
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{ '/final/' | relative_url }}"
+           class="nav-link {% if page.url == '/final/' %}active{% endif %}">
+          Final Project
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</nav>

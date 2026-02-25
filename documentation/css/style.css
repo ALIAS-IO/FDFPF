@@ -1,0 +1,220 @@
+/* =========================
+   Global Styles
+   ========================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+body {
+    padding-top: 80px; /* navbar height */
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 3rem;
+}
+/* =========================
+   Navbar Styles
+   ========================= */
+.navbar {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #333;
+    background: #212529;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.navbar .navbar-brand img { height: 50px; }
+
+.navbar-nav { list-style: none; margin: 0; padding: 0; display: flex; }
+
+.navbar-nav .nav-item { margin: 0 10px; }
+
+.navbar-nav .nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active { color: #f0a500; }
+
+/* =========================
+   Hero Section
+   ========================= */
+.hero {
+    display: flex;
+    align-items: center;       /* vertical centering */
+    justify-content: center;   /* horizontal centering */
+    min-height: 70vh;          /* take most of viewport height */
+    padding: 2rem 1rem;
+    text-align: center;
+    flex-direction: column;    /* stack content on smaller screens */
+}
+
+.hero h2 {
+    font-size: 3rem;           /* larger heading */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.hero h5 {
+    font-size: 1.5rem;
+    opacity: 0.75;
+}
+
+/* =========================
+   Generic Section
+   ========================= */
+section { padding: 4rem 1rem; }
+section.bg-light { background-color: #111; }
+
+/* =========================
+   Footer Styles
+   ========================= */
+.footer {
+    background: #212529;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* =========================
+   Card Styles
+   ========================= */
+.card-custom {
+    background: #111;                /* Dark background */
+    border-radius: 12px;             /* Rounded corners */
+    padding: 2rem 1.5rem;            /* Inner spacing */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-custom:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(240, 165, 0, 0.3); /* subtle yellow glow */
+}
+
+.card-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: #ccc;                     /* slightly lighter text */
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+}
+
+.card-custom a.btn {
+    text-decoration: none;
+    background: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.card-custom a.btn:hover {
+    background: #f0a500;
+    color: #111;
+}
+
+/* =========================
+   Timeline Styles
+   ========================= */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: #ffc107; /* yellow line */
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 1rem 2rem;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.left { left: 0; text-align: right; transform: translateX(-50px); }
+.timeline-item.right { left: 50%; text-align: left; }
+
+.timeline-item.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-content {
+    background: #222;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    max-width: 400px;
+}
+
+.collapse { margin-top: 0.5rem; }
+
+/* =========================
+   Modal
+   ========================= */
+.modal-title {
+    font-weight: bold;
+}
+
+.custom-modal-width {
+    max-width: 1200px; /* Adjust width as needed */
+}
+
+.modal-img {
+    max-width: 600px;   /* smaller images */
+    height: auto;
+    display: block;
+    margin: 0 auto;     /* center inside column */
+}
+
+.modal-body h3, .modal-body h5 {
+    font-weight: bold;
+}
+
+figure {
+    display: inline-block;
+    margin: 0 10px;
+    text-align: center;
+}
+
+figcaption {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-top: 0.25rem;
+}

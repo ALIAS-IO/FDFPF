@@ -1,0 +1,14 @@
+title: Ivan Ooi
+baseurl: "/FDFPF"
+url: "https://ALIAS-IO.github.io"
+permalink: pretty
+source: documentation
+nav:
+  - name: Home
+    link: /
+  - name: About
+    link: /about/
+  - name: Weekly Documentation
+    link: /weekly/
+  - name: Final Project
+    link: /final/

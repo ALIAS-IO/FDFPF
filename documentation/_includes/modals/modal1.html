@@ -1,0 +1,273 @@
+<!-- Modal 1 -->
+<div class="modal fade" id="modal1" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable custom-modal-width">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Embedded Programming</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+
+        <!-- Regular Exercises -->
+        <h3 class="my-2">Regular Exercises</h3>
+        <p>These exercises were completed by just following the instructions (GPIO pin locations were altered so that it would look cleaner).</p>
+
+        <!-- Exercise 1 -->
+        <div class="my-4 text-center">
+          <h5>Exercise 1</h5>
+          <img src="{{ 'images/EmbedProg/exercise1.png' | relative_url }}" alt="Exercise 1" class="modal-img">
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="my-4 text-center">
+          <h5>Exercise 2</h5>
+          <img src="{{ 'images/EmbedProg/exercise2.png' | relative_url }}" alt="Exercise 2" class="modal-img">
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="my-4 text-center">
+          <h5>Exercise 3</h5>
+          <img src="{{ 'images/EmbedProg/exercise3.png' | relative_url }}" alt="Exercise 3" class="modal-img">
+        </div>
+
+        <!-- Exercises with Gen AI -->
+        <h3 class="mt-5">Exercises with Gen AI</h3>
+        <p>These exercises were completed with responses from Gen AI, specifically ChatGPT, to generate the MicroPython code.</p>
+
+        <!-- Exercise 4 -->
+        <div class="my-4">
+          <h5>Exercise 4</h5>
+          <p>No additional prompting was needed for this</p>
+          <p>Code from ChatGPT:</p>
+          <pre class="code-block"><code>
+from machine import Pin, ADC, PWM
+import time
+
+# --- ADC for potentiometer ---
+pot = ADC(Pin(3))          # GPIO3 / A3
+pot.atten(ADC.ATTN_11DB)   # Full 0-3.3V range
+pot.width(ADC.WIDTH_12BIT) # 12-bit ADC (0-4095)
+
+# --- PWM for LED ---
+led = PWM(Pin(9), freq=1000)  # 1 kHz PWM
+
+# --- Main loop ---
+while True:
+    pot_value = pot.read()          # Read ADC (0-4095)
+    duty = int(pot_value / 4095 * 1023)  # Map to 10-bit PWM duty
+    led.duty(duty)
+    time.sleep(0.01)
+          </code></pre>
+
+          <div class="text-center my-3">
+            <figure class="d-inline-block mx-2">
+              <img src="{{ 'images/EmbedProg/exercise4-1.png' | relative_url }}" alt="Exercise 4 (Unlit)" class="modal-img">
+              <figcaption>Exercise 4 (Unlit)</figcaption>
+            </figure>
+            <figure class="d-inline-block mx-2">
+              <img src="{{ 'images/EmbedProg/exercise4-2.png' | relative_url }}" alt="Exercise 4 (Low Light)" class="modal-img">
+              <figcaption>Exercise 4 (Low Light)</figcaption>
+            </figure>
+            <figure class="d-inline-block mx-2">
+              <img src="{{ 'images/EmbedProg/exercise4-3.png' | relative_url }}" alt="Exercise 4 (Max Light)" class="modal-img">
+              <figcaption>Exercise 4 (Max Light)</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Exercise 5 -->
+        <div class="my-4">
+          <h5>Exercise 5</h5>
+          <p>Reprompted to generate code for internal pull-down resistor so the button works.</p>
+          <p>Code from ChatGPT:</p>
+          <pre class="code-block"><code>
+from machine import Pin
+import neopixel
+import time
+
+NUM_LEDS = 16
+PIN_NEOPIXEL = 16
+BUTTON_PIN = 15
+
+np = neopixel.NeoPixel(Pin(PIN_NEOPIXEL), NUM_LEDS)
+button = Pin(BUTTON_PIN, Pin.IN, Pin.PULL_DOWN)
+
+OFF = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+colors = [OFF, RED, GREEN, BLUE]
+
+color_index = 0
+DEBOUNCE = 200
+last_press = 0
+
+def set_color(color):
+    for i in range(NUM_LEDS):
+        np[i] = color
+    np.write()
+
+set_color(OFF)
+
+while True:
+    now = time.ticks_ms()
+    if button.value():
+        if time.ticks_diff(now, last_press) > DEBOUNCE:
+            color_index = (color_index + 1) % len(colors)
+            set_color(colors[color_index])
+            print("Color:", colors[color_index])
+            last_press = now
+    time.sleep(0.01)
+          </code></pre>
+
+          <div class="text-center my-3">
+            <figure class="d-inline-block mx-2">
+              <img src="{{ 'images/EmbedProg/exercise5.png' | relative_url }}" alt="Exercise 5" class="modal-img">
+            </figure>
+          </div>
+        </div>
+
+        <!-- Challenge Exercise 1 -->
+        <div class="my-4">
+          <h5>Challenge Exercise 1</h5>
+          <p>Downloaded the python library for ssd1306.</p>
+          <p>Code from ChatGPT:</p>
+          <pre class="code-block"><code>
+from machine import Pin, I2C
+import ssd1306
+import dht
+import time
+
+# --- I2C Setup ---
+i2c = I2C(0, scl=Pin(9), sda=Pin(8))
+oled = ssd1306.SSD1306_I2C(128, 64, i2c)
+
+# --- DHT22 Sensor ---
+sensor = dht.DHT22(Pin(4))
+
+while True:
+    try:
+        sensor.measure()
+        temp = sensor.temperature()
+        hum = sensor.humidity()
+
+        oled.fill(0)
+        oled.text("Env Monitor", 0, 0)
+        oled.text("Temp: {:.1f}C".format(temp), 0, 20)
+        oled.text("Hum: {:.1f}%".format(hum), 0, 40)
+        oled.show()
+
+        time.sleep(2)
+    except OSError:
+        oled.fill(0)
+        oled.text("Sensor error", 0, 20)
+        oled.show()
+        time.sleep(2)
+          </code></pre>
+
+          <div class="text-center my-3">
+            <figure class="d-inline-block mx-2">
+              <img src="{{ 'images/EmbedProg/challengeExercise1.png' | relative_url }}" alt="Challenge Exercise 1 (Temperature 1)" class="modal-img">
+              <figcaption>Temperature 1</figcaption>
+            </figure>
+            <figure class="d-inline-block mx-2">
+              <img src="{{ 'images/EmbedProg/challengeExercise1-2.png' | relative_url }}" alt="Challenge Exercise 1 (Temperature 2)" class="modal-img">
+              <figcaption>Temperature 2</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Challenge Exercise 2 -->
+        <div class="my-4">
+          <h5>Challenge Exercise 2</h5>
+          <p>No additional prompting was needed for this</p>
+          <p>Code from ChatGPT:</p>
+          <pre class="code-block"><code>
+from machine import Pin, PWM
+import time
+
+# --- Configuration ---
+TRIG_PIN = 4
+ECHO_PIN = 3
+SERVO_PIN = 15
+LED_PIN = 28
+
+# --- Initialize Pins ---
+trig = Pin(TRIG_PIN, Pin.OUT)
+echo = Pin(ECHO_PIN, Pin.IN)
+servo = PWM(Pin(SERVO_PIN))
+servo.freq(50)
+led = Pin(LED_PIN, Pin.OUT)
+
+# --- Helper Functions ---
+def distance_cm():
+    trig.low()
+    time.sleep_us(2)
+    trig.high()
+    time.sleep_us(10)
+    trig.low()
+
+    timeout = time.ticks_add(time.ticks_us(), 30000)
+    while echo.value() == 0:
+        if time.ticks_us() > timeout:
+            return -1
+        pulse_start = time.ticks_us()
+    timeout = time.ticks_add(time.ticks_us(), 30000)
+    while echo.value() == 1:
+        if time.ticks_us() > timeout:
+            return -1
+        pulse_end = time.ticks_us()
+
+    pulse_duration = time.ticks_diff(pulse_end, pulse_start)
+    distance = (pulse_duration / 2) / 29.1
+    return distance
+
+def servo_dispense(angle=90, duration=1):
+    min_us = 500
+    max_us = 2500
+    period_us = 20000
+    pulse_us = min_us + (max_us - min_us) * angle / 180
+    duty = int(pulse_us / period_us * 65535)
+    servo.duty_u16(duty)
+    time.sleep(duration)
+    duty = int(min_us / period_us * 65535)
+    servo.duty_u16(duty)
+    time.sleep(0.2)
+
+# --- Main Loop ---
+while True:
+    try:
+        dist = distance_cm()
+        if dist != -1:
+            print("Distance:", dist, "cm")
+
+        if 0 < dist < 3:
+            led.high()
+            time.sleep(0.05)
+            servo_dispense(90, duration=1)
+            led.low()
+
+        time.sleep(0.1)
+
+    except Exception as e:
+        print("Error:", e)
+        led.low()
+          </code></pre>
+
+          <div class="text-center mb-3">
+            <figure class="d-inline-block mx-2">
+              <img src="{{ 'images/EmbedProg/challengeExercise2.png' | relative_url }}" alt="Distance 1" class="modal-img">
+              <figcaption>Distance 1</figcaption>
+            </figure>
+            <figure class="d-inline-block mx-2">
+              <img src="{{ 'images/EmbedProg/challengeExercise2-2.png' | relative_url }}" alt="Distance 2" class="modal-img">
+              <figcaption>Distance 2</figcaption>
+            </figure>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
