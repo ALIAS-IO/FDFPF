@@ -931,24 +931,26 @@ void drawTimes() {
 }
 </code></pre>
             <!-- Preview button -->
-            <a href="chessTimer.html" target="_blank" class="btn btn-outline-warning mb-4">
+            <a href="{{ '/chessTimer.html' | relative_url }}" target="_blank" class="btn btn-outline-warning mb-4">
             &#9822; Open Web App Preview &nearr;
             </a>
         </div>
 
         <div>
             <h3 class="text-center">Assembly</h3>
-            <p>With the help from Mr Chew, I did the milling for my PCB</p>
+            <p>With everything working, I tested out the clock when assembled.</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/milling.jpg' | relative_url }}" 
-                    alt="PCB Milling" 
+                <img src="{{ 'images/Final/assembling.jpg' | relative_url }}" 
+                    alt="Assembling Chess Clock" 
                     class="modal-img">
             </figure>
-            <p>I forgot to take a photo of my pcb finish milling, so there is no image for it</p>
-            <p>After I cleaned up the PCB, I started soldering the pin headers and XIAO ESP32 C3 to it.</p>
+            <p>When everything was working to my liking, I got help from Mr Yeo to solder wires to the 5V and GND ports on the microcontroller on my PCB to connect to a DC port, so that external power can be used on the clock.
+                I also created a DC to usb cable so that a powerbank can be connected to the clock and be used on the go.
+            </p>
+            <p>With that, I have my final project</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/soldered.jpg' | relative_url }}" 
-                    alt="Soldered PCB" 
+                <img src="{{ 'images/Final/assembled.jpg' | relative_url }}" 
+                    alt="Chess Clock" 
                     class="modal-img">
             </figure>
         </div>
