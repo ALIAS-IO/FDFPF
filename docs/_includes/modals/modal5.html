@@ -2,13 +2,297 @@
 <div class="modal fade" id="modal5" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content bg-dark text-white">
-      <div class="modal-header">
-        <h5 class="modal-title">Interface & Applications Programming</h5>
+
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title fw-semibold">Interface &amp; Applications Programming</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body">
-        <h2>Exercise 5</h2>
-        <p>Software interface design, communication protocols, and IoT integration details.</p>
+
+      <div class="modal-body px-4 py-4">
+
+        <!-- Section heading -->
+        <h2 class="fs-4 fw-bold mb-1">Web App Integration</h2>
+        <hr class="border-secondary mt-2 mb-3">
+
+        <!-- Description -->
+        <p class="text-secondary mb-2">For this section, I am documenting the web app I designed for my final project.</p>
+        <p class="text-secondary mb-2">I decided to create a web app as it is easy to use and compatible with both phone and computer.</p>
+        <p class="text-secondary mb-4">The app allows the user to input custom timings for each player, then send them directly to the clock.</p>
+
+        <!-- Preview button -->
+        <a href="chessTimer.html" target="_blank" class="btn btn-outline-warning mb-4">
+          &#9822; Open Web App Preview &nearr;
+        </a>
+
+        <!-- Code section label -->
+        <p class="text-uppercase text-secondary fw-semibold mb-2" style="font-size: 0.75rem; letter-spacing: 0.1em;">Source Code</p>
+
+        <!-- Code block -->
+        <pre class="code-block rounded p-3" style="background:#0d1117; border:1px solid #30363d; overflow-x:auto; font-size:0.8rem; line-height:1.6;"><code class="text-light">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Chess Clock Config&lt;/title&gt;
+  &lt;style&gt;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: &#x27;Segoe UI&#x27;, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; color: #e2c97e; letter-spacing: 2px; }
+    p.subtitle { color: #888; margin-bottom: 32px; font-size: 0.9rem; }
+    .card {
+      background: #16213e;
+      border: 1px solid #0f3460;
+      border-radius: 16px;
+      padding: 28px;
+      width: 100%;
+      max-width: 480px;
+      margin-bottom: 16px;
+    }
+    .card h2 { font-size: 1rem; color: #e2c97e; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    .fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .fields-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+    .field label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+    .field input {
+      width: 100%;
+      background: #0f3460;
+      border: 1px solid #1a4a8a;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.4rem;
+      padding: 10px;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus { border-color: #e2c97e; }
+    .field input:disabled { opacity: 0.4; }
+    .field input.error { border-color: #f44336; }
+    .same-time { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-size: 0.85rem; color: #888; cursor: pointer; }
+    .same-time input[type=checkbox] { width: 16px; height: 16px; accent-color: #e2c97e; cursor: pointer; }
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 1px;
+      background: #e2c97e;
+      color: #1a1a2e;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    button:active { transform: scale(0.97); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    #status { margin-top: 16px; font-size: 0.85rem; text-align: center; min-height: 20px; color: #888; }
+    #status.ok  { color: #4caf50; }
+    #status.err { color: #f44336; }
+    .presets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 4px; }
+    .preset-btn {
+      padding: 10px 4px;
+      background: #0f3460;
+      color: #e2c97e;
+      border: 1px solid #1a4a8a;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.2s;
+      line-height: 1.4;
+    }
+    .preset-btn:hover { background: #1a4a8a; }
+    .preset-btn .inc { font-size: 0.65rem; color: #aaa; display: block; }
+    .inc-note { font-size: 0.75rem; color: #888; margin-top: 8px; }
+    #lockMsg { text-align: center; color: #e2c97e; font-size: 0.85rem; margin-bottom: 12px; display: none; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;&amp;#9822; Chess Timer&lt;/h1&gt;
+  &lt;p class=&quot;subtitle&quot;&gt;Join &lt;strong&gt;ChessTimer&lt;/strong&gt; WiFi then visit &lt;strong&gt;chesstimer.local&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h2&gt;Quick Presets&lt;/h2&gt;
+    &lt;div class=&quot;presets&quot;&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,1,0,0,0,1,0,0)&quot;&gt;1 min&lt;span class=&quot;inc&quot;&gt;no inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,10,0,0,0,10,0,0)&quot;&gt;10 min&lt;span class=&quot;inc&quot;&gt;no inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,30,0,0,0,30,0,0)&quot;&gt;30 min&lt;span class=&quot;inc&quot;&gt;no inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,3,0,2,0,3,0,2)&quot;&gt;3 | 2&lt;span class=&quot;inc&quot;&gt;+2s inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,5,0,3,0,5,0,3)&quot;&gt;5 | 3&lt;span class=&quot;inc&quot;&gt;+3s inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,15,0,10,0,15,0,10)&quot;&gt;15 | 10&lt;span class=&quot;inc&quot;&gt;+10s inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(1,30,0,30,1,30,0,30)&quot;&gt;90 | 30&lt;span class=&quot;inc&quot;&gt;+30s inc&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;inc-note&quot;&gt;Format: &lt;strong&gt;time | increment&lt;/strong&gt; &amp;mdash; e.g. 3 | 2 = 3 min + 2s per move&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h2&gt;&amp;#11014; Player 1 (White)&lt;/h2&gt;
+    &lt;div class=&quot;fields-4&quot;&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Hours&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p1h&quot; min=&quot;0&quot; max=&quot;23&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Minutes&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p1m&quot; min=&quot;0&quot; max=&quot;59&quot; value=&quot;5&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Seconds&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p1s&quot; min=&quot;0&quot; max=&quot;59&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;+Inc (s)&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;inc1&quot; min=&quot;0&quot; max=&quot;300&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h2&gt;&amp;#11015; Player 2 (Black)&lt;/h2&gt;
+    &lt;div class=&quot;fields-4&quot;&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Hours&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p2h&quot; min=&quot;0&quot; max=&quot;23&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Minutes&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p2m&quot; min=&quot;0&quot; max=&quot;59&quot; value=&quot;5&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Seconds&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p2s&quot; min=&quot;0&quot; max=&quot;59&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;+Inc (s)&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;inc2&quot; min=&quot;0&quot; max=&quot;300&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;label class=&quot;same-time&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; id=&quot;sameTime&quot; checked onchange=&quot;syncTimes()&quot;&gt;
+      Same time as Player 1
+    &lt;/label&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;div id=&quot;lockMsg&quot;&gt;&amp;#128274; Hold the web button on the clock first&lt;/div&gt;
+    &lt;button id=&quot;btnSend&quot; onclick=&quot;sendTiming()&quot;&gt;Send to Clock&lt;/button&gt;
+    &lt;div id=&quot;status&quot;&gt;Checking clock status...&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    let unlocked = false;
+    let statusInterval = null;
+
+    async function checkStatus() {
+      try {
+        const res = await fetch(&#x27;/status&#x27;);
+        const text = await res.text();
+        unlocked = text.trim() === &#x27;unlocked&#x27;;
+        updateLockUI();
+      } catch(e) {
+        setStatus(&#x27;Cannot reach clock.&#x27;, &#x27;err&#x27;);
+      }
+    }
+
+    function updateLockUI() {
+      const btn = document.getElementById(&#x27;btnSend&#x27;);
+      const msg = document.getElementById(&#x27;lockMsg&#x27;);
+      if (unlocked) {
+        btn.disabled = false;
+        msg.style.display = &#x27;none&#x27;;
+        setStatus(&#x27;Ready&#x27;, &#x27;&#x27;);
+      } else {
+        btn.disabled = true;
+        msg.style.display = &#x27;block&#x27;;
+        setStatus(&#x27;&#x27;, &#x27;&#x27;);
+      }
+    }
+
+    [&#x27;p1h&#x27;,&#x27;p1m&#x27;,&#x27;p1s&#x27;,&#x27;inc1&#x27;].forEach(id =&gt; {
+      document.getElementById(id).addEventListener(&#x27;input&#x27;, () =&gt; {
+        if (document.getElementById(&#x27;sameTime&#x27;).checked) syncTimes();
+      });
+    });
+
+    function syncTimes() {
+      const checked = document.getElementById(&#x27;sameTime&#x27;).checked;
+      if (checked) {
+        document.getElementById(&#x27;p2h&#x27;).value  = document.getElementById(&#x27;p1h&#x27;).value;
+        document.getElementById(&#x27;p2m&#x27;).value  = document.getElementById(&#x27;p1m&#x27;).value;
+        document.getElementById(&#x27;p2s&#x27;).value  = document.getElementById(&#x27;p1s&#x27;).value;
+        document.getElementById(&#x27;inc2&#x27;).value = document.getElementById(&#x27;inc1&#x27;).value;
+      }
+      document.getElementById(&#x27;p2h&#x27;).disabled  = checked;
+      document.getElementById(&#x27;p2m&#x27;).disabled  = checked;
+      document.getElementById(&#x27;p2s&#x27;).disabled  = checked;
+      document.getElementById(&#x27;inc2&#x27;).disabled = checked;
+    }
+
+    function setPreset(p1h, p1m, p1s, i1, p2h, p2m, p2s, i2) {
+      document.getElementById(&#x27;p1h&#x27;).value  = p1h;
+      document.getElementById(&#x27;p1m&#x27;).value  = p1m;
+      document.getElementById(&#x27;p1s&#x27;).value  = p1s;
+      document.getElementById(&#x27;inc1&#x27;).value = i1;
+      document.getElementById(&#x27;p2h&#x27;).value  = p2h;
+      document.getElementById(&#x27;p2m&#x27;).value  = p2m;
+      document.getElementById(&#x27;p2s&#x27;).value  = p2s;
+      document.getElementById(&#x27;inc2&#x27;).value = i2;
+      syncTimes();
+    }
+
+    function clamp(v, mn, mx) { return Math.min(Math.max(parseInt(v) || 0, mn), mx); }
+
+    function validate() {
+      let ok = true;
+      const limits = { p1h:[0,23], p1m:[0,59], p1s:[0,59], inc1:[0,300],
+                       p2h:[0,23], p2m:[0,59], p2s:[0,59], inc2:[0,300] };
+      Object.entries(limits).forEach(([id, [mn, mx]]) =&gt; {
+        const el = document.getElementById(id);
+        const v = parseInt(el.value) || 0;
+        if (v &lt; mn || v &gt; mx) { el.classList.add(&#x27;error&#x27;); ok = false; }
+        else el.classList.remove(&#x27;error&#x27;);
+      });
+      const p1total = clamp(document.getElementById(&#x27;p1h&#x27;).value,0,23)*3600
+                    + clamp(document.getElementById(&#x27;p1m&#x27;).value,0,59)*60
+                    + clamp(document.getElementById(&#x27;p1s&#x27;).value,0,59);
+      const p2total = clamp(document.getElementById(&#x27;p2h&#x27;).value,0,23)*3600
+                    + clamp(document.getElementById(&#x27;p2m&#x27;).value,0,59)*60
+                    + clamp(document.getElementById(&#x27;p2s&#x27;).value,0,59);
+      if (p1total === 0) { setStatus(&#x27;Player 1 time cannot be zero.&#x27;, &#x27;err&#x27;); ok = false; }
+      else if (p2total === 0) { setStatus(&#x27;Player 2 time cannot be zero.&#x27;, &#x27;err&#x27;); ok = false; }
+      return ok;
+    }
+
+    async function sendTiming() {
+      if (!unlocked) { setStatus(&#x27;Hold the web button on the clock first.&#x27;, &#x27;err&#x27;); return; }
+      if (!validate()) return;
+      const p1h  = clamp(document.getElementById(&#x27;p1h&#x27;).value,  0, 23);
+      const p1m  = clamp(document.getElementById(&#x27;p1m&#x27;).value,  0, 59);
+      const p1s  = clamp(document.getElementById(&#x27;p1s&#x27;).value,  0, 59);
+      const inc1 = clamp(document.getElementById(&#x27;inc1&#x27;).value, 0, 300);
+      const p2h  = clamp(document.getElementById(&#x27;p2h&#x27;).value,  0, 23);
+      const p2m  = clamp(document.getElementById(&#x27;p2m&#x27;).value,  0, 59);
+      const p2s  = clamp(document.getElementById(&#x27;p2s&#x27;).value,  0, 59);
+      const inc2 = clamp(document.getElementById(&#x27;inc2&#x27;).value, 0, 300);
+      try {
+        const res = await fetch(&#x27;/set&#x27;, {
+          method: &#x27;POST&#x27;,
+          headers: { &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27; },
+          body: `p1h=${p1h}&amp;p1m=${p1m}&amp;p1s=${p1s}&amp;inc1=${inc1}&amp;p2h=${p2h}&amp;p2m=${p2m}&amp;p2s=${p2s}&amp;inc2=${inc2}`
+        });
+        const text = await res.text();
+        if (text === &#x27;OK&#x27;) {
+          clearInterval(statusInterval);
+          statusInterval = null;
+          document.getElementById(&#x27;lockMsg&#x27;).style.display = &#x27;none&#x27;;
+          document.getElementById(&#x27;btnSend&#x27;).disabled = false;
+          setStatus(&#x27;&amp;#10003; Timing sent! Clock is ready to start.&#x27;, &#x27;ok&#x27;);
+        } else {
+          setStatus(&#x27;Error: &#x27; + text, &#x27;err&#x27;);
+        }
+      } catch(e) {
+        setStatus(&#x27;Failed to reach clock: &#x27; + e.message, &#x27;err&#x27;);
+      }
+    }
+
+    function setStatus(msg, cls) {
+      const el = document.getElementById(&#x27;status&#x27;);
+      el.innerHTML = msg;
+      el.className = cls;
+    }
+
+    syncTimes();
+    checkStatus();
+    statusInterval = setInterval(checkStatus, 2000);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
       </div>
     </div>
   </div>

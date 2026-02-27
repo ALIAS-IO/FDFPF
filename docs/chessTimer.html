@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Clock Config</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; color: #e2c97e; letter-spacing: 2px; }
+    p.subtitle { color: #888; margin-bottom: 32px; font-size: 0.9rem; }
+    .card {
+      background: #16213e;
+      border: 1px solid #0f3460;
+      border-radius: 16px;
+      padding: 28px;
+      width: 100%;
+      max-width: 480px;
+      margin-bottom: 16px;
+    }
+    .card h2 { font-size: 1rem; color: #e2c97e; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    .fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .fields-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+    .field label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+    .field input {
+      width: 100%;
+      background: #0f3460;
+      border: 1px solid #1a4a8a;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.4rem;
+      padding: 10px;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus { border-color: #e2c97e; }
+    .field input:disabled { opacity: 0.4; }
+    .field input.error { border-color: #f44336; }
+    .same-time { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-size: 0.85rem; color: #888; cursor: pointer; }
+    .same-time input[type=checkbox] { width: 16px; height: 16px; accent-color: #e2c97e; cursor: pointer; }
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 1px;
+      background: #e2c97e;
+      color: #1a1a2e;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    button:active { transform: scale(0.97); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    #status { margin-top: 16px; font-size: 0.85rem; text-align: center; min-height: 20px; color: #888; }
+    #status.ok  { color: #4caf50; }
+    #status.err { color: #f44336; }
+    .presets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 4px; }
+    .preset-btn {
+      padding: 10px 4px;
+      background: #0f3460;
+      color: #e2c97e;
+      border: 1px solid #1a4a8a;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.2s;
+      line-height: 1.4;
+    }
+    .preset-btn:hover { background: #1a4a8a; }
+    .preset-btn .inc { font-size: 0.65rem; color: #aaa; display: block; }
+    .inc-note { font-size: 0.75rem; color: #888; margin-top: 8px; }
+    #lockMsg { text-align: center; color: #e2c97e; font-size: 0.85rem; margin-bottom: 12px; display: none; }
+  </style>
+</head>
+<body>
+  <h1>&#9822; Chess Timer</h1>
+  <p class="subtitle">Join <strong>ChessTimer</strong> WiFi then visit <strong>chesstimer.local</strong></p>
+
+  <div class="card">
+    <h2>Quick Presets</h2>
+    <div class="presets">
+      <div class="preset-btn" onclick="setPreset(0,1,0,0,0,1,0,0)">1 min<span class="inc">no inc</span></div>
+      <div class="preset-btn" onclick="setPreset(0,10,0,0,0,10,0,0)">10 min<span class="inc">no inc</span></div>
+      <div class="preset-btn" onclick="setPreset(0,30,0,0,0,30,0,0)">30 min<span class="inc">no inc</span></div>
+      <div class="preset-btn" onclick="setPreset(0,3,0,2,0,3,0,2)">3 | 2<span class="inc">+2s inc</span></div>
+      <div class="preset-btn" onclick="setPreset(0,5,0,3,0,5,0,3)">5 | 3<span class="inc">+3s inc</span></div>
+      <div class="preset-btn" onclick="setPreset(0,15,0,10,0,15,0,10)">15 | 10<span class="inc">+10s inc</span></div>
+      <div class="preset-btn" onclick="setPreset(1,30,0,30,1,30,0,30)">90 | 30<span class="inc">+30s inc</span></div>
+    </div>
+    <p class="inc-note">Format: <strong>time | increment</strong> &mdash; e.g. 3 | 2 = 3 min + 2s per move</p>
+  </div>
+
+  <div class="card">
+    <h2>&#11014; Player 1 (White)</h2>
+    <div class="fields-4">
+      <div class="field"><label>Hours</label><input type="number" id="p1h" min="0" max="23" value="0"></div>
+      <div class="field"><label>Minutes</label><input type="number" id="p1m" min="0" max="59" value="5"></div>
+      <div class="field"><label>Seconds</label><input type="number" id="p1s" min="0" max="59" value="0"></div>
+      <div class="field"><label>+Inc (s)</label><input type="number" id="inc1" min="0" max="300" value="0"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>&#11015; Player 2 (Black)</h2>
+    <div class="fields-4">
+      <div class="field"><label>Hours</label><input type="number" id="p2h" min="0" max="23" value="0"></div>
+      <div class="field"><label>Minutes</label><input type="number" id="p2m" min="0" max="59" value="5"></div>
+      <div class="field"><label>Seconds</label><input type="number" id="p2s" min="0" max="59" value="0"></div>
+      <div class="field"><label>+Inc (s)</label><input type="number" id="inc2" min="0" max="300" value="0"></div>
+    </div>
+    <label class="same-time">
+      <input type="checkbox" id="sameTime" checked onchange="syncTimes()">
+      Same time as Player 1
+    </label>
+  </div>
+
+  <div class="card">
+    <div id="lockMsg">&#128274; Hold the web button on the clock first</div>
+    <button id="btnSend" onclick="sendTiming()">Send to Clock</button>
+    <div id="status">Checking clock status...</div>
+  </div>
+
+  <script>
+    let unlocked = false;
+    let statusInterval = null;
+
+    async function checkStatus() {
+      try {
+        const res = await fetch('/status');
+        const text = await res.text();
+        unlocked = text === 'unlocked';
+        updateLockUI();
+      } catch(e) {
+        setStatus('Cannot reach clock.', 'err');
+      }
+    }
+
+    function updateLockUI() {
+      const btn = document.getElementById('btnSend');
+      const msg = document.getElementById('lockMsg');
+      if (unlocked) {
+        btn.disabled = false;
+        msg.style.display = 'none';
+        setStatus('Ready', '');
+      } else {
+        btn.disabled = true;
+        msg.style.display = 'block';
+        setStatus('', '');
+      }
+    }
+
+    ['p1h','p1m','p1s','inc1'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        if (document.getElementById('sameTime').checked) syncTimes();
+      });
+    });
+
+    function syncTimes() {
+      const checked = document.getElementById('sameTime').checked;
+      if (checked) {
+        document.getElementById('p2h').value  = document.getElementById('p1h').value;
+        document.getElementById('p2m').value  = document.getElementById('p1m').value;
+        document.getElementById('p2s').value  = document.getElementById('p1s').value;
+        document.getElementById('inc2').value = document.getElementById('inc1').value;
+      }
+      document.getElementById('p2h').disabled  = checked;
+      document.getElementById('p2m').disabled  = checked;
+      document.getElementById('p2s').disabled  = checked;
+      document.getElementById('inc2').disabled = checked;
+    }
+
+    function setPreset(p1h, p1m, p1s, i1, p2h, p2m, p2s, i2) {
+      document.getElementById('p1h').value  = p1h;
+      document.getElementById('p1m').value  = p1m;
+      document.getElementById('p1s').value  = p1s;
+      document.getElementById('inc1').value = i1;
+      document.getElementById('p2h').value  = p2h;
+      document.getElementById('p2m').value  = p2m;
+      document.getElementById('p2s').value  = p2s;
+      document.getElementById('inc2').value = i2;
+      syncTimes();
+    }
+
+    function clamp(v, mn, mx) { return Math.min(Math.max(parseInt(v) || 0, mn), mx); }
+
+    function validate() {
+      let ok = true;
+      const limits = { p1h:[0,23], p1m:[0,59], p1s:[0,59], inc1:[0,300],
+                       p2h:[0,23], p2m:[0,59], p2s:[0,59], inc2:[0,300] };
+      Object.entries(limits).forEach(([id, [mn, mx]]) => {
+        const el = document.getElementById(id);
+        const v = parseInt(el.value) || 0;
+        if (v < mn || v > mx) { el.classList.add('error'); ok = false; }
+        else el.classList.remove('error');
+      });
+      const p1total = clamp(document.getElementById('p1h').value,0,23)*3600
+                    + clamp(document.getElementById('p1m').value,0,59)*60
+                    + clamp(document.getElementById('p1s').value,0,59);
+      const p2total = clamp(document.getElementById('p2h').value,0,23)*3600
+                    + clamp(document.getElementById('p2m').value,0,59)*60
+                    + clamp(document.getElementById('p2s').value,0,59);
+      if (p1total === 0) { setStatus('Player 1 time cannot be zero.', 'err'); ok = false; }
+      else if (p2total === 0) { setStatus('Player 2 time cannot be zero.', 'err'); ok = false; }
+      return ok;
+    }
+
+    async function sendTiming() {
+      if (!unlocked) { setStatus('Hold the web button on the clock first.', 'err'); return; }
+      if (!validate()) return;
+      const p1h  = clamp(document.getElementById('p1h').value,  0, 23);
+      const p1m  = clamp(document.getElementById('p1m').value,  0, 59);
+      const p1s  = clamp(document.getElementById('p1s').value,  0, 59);
+      const inc1 = clamp(document.getElementById('inc1').value, 0, 300);
+      const p2h  = clamp(document.getElementById('p2h').value,  0, 23);
+      const p2m  = clamp(document.getElementById('p2m').value,  0, 59);
+      const p2s  = clamp(document.getElementById('p2s').value,  0, 59);
+      const inc2 = clamp(document.getElementById('inc2').value, 0, 300);
+      try {
+        const res = await fetch('/set', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `p1h=${p1h}&p1m=${p1m}&p1s=${p1s}&inc1=${inc1}&p2h=${p2h}&p2m=${p2m}&p2s=${p2s}&inc2=${inc2}`
+        });
+        const text = await res.text();
+        if (text === 'OK') {
+          clearInterval(statusInterval);
+          statusInterval = null;
+          document.getElementById('lockMsg').style.display = 'none';
+          document.getElementById('btnSend').disabled = false;
+          setStatus('&#10003; Timing sent! Clock is ready to start.', 'ok');
+        } else {
+          setStatus('Error: ' + text, 'err');
+        }
+      } catch(e) {
+        setStatus('Failed to reach clock: ' + e.message, 'err');
+      }
+    }
+
+    function setStatus(msg, cls) {
+      const el = document.getElementById('status');
+      el.innerHTML = msg;
+      el.className = cls;
+    }
+
+    syncTimes();
+    checkStatus();
+    statusInterval = setInterval(checkStatus, 2000);
+  </script>
+</body>
+</html>

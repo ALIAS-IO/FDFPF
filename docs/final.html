@@ -36,115 +36,920 @@ permalink: /final/
 
         <div>
             <h3 class="text-center">Model Designing</h3>
-            <p>For my final project, I was thinking what could be fun and interesting for me to make. 
-                As a chess player, I realised that a chess clock could be a good idea as it was fun and could also show some of the skills I learnt from the lessons</p>
+            <p>Below is my final iteration of my design (without some extra parts)</p>
+            <div class="my-3" style="width: 100%; height: 600px;">
+            <iframe
+                src="https://a360.co/4chVj0i"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+            </div>
+            <p>I have a different front panel at first, but decided to change it after failures from trying to cut it out (later explained in CNC Cutting)</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/failed_front_front.png' | relative_url }}" 
+                    alt="Front Panel(Front)" 
                     class="modal-img">
-                <figcaption>Inspiration</figcaption>
+                <figcaption>Front Panel(Front)</figcaption>
             </figure>
             <p>I had thought for trying the make the clock with the rocker piece. However, I realised that it was overcomplicating the design, so I decided against it, and just used regular buttons</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock_2.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/failed_front_back.png' | relative_url }}" 
+                    alt="Front Panel(Back)" 
                     class="modal-img">
-                <figcaption>Something like this</figcaption>
+                <figcaption>Front Panel(Back)</figcaption>
             </figure>
         </div>
 
         <div>
             <h3 class="text-center">PCB Designing</h3>
-            <p>For my final project, I was thinking what could be fun and interesting for me to make. 
-                As a chess player, I realised that a chess clock could be a good idea as it was fun and could also show some of the skills I learnt from the lessons</p>
+            <p>For my design, I needed 5 buttons and 2 LCDs at least. I originally thought of putting a buzzer in but decided against it</p>
+            <p>I decided to use surface mount pin headers as all my components wuld be coming from on top the clock.</p>
+            <p>I added 2 7-pin headers for the buttons, connected a GPIO pin for each button to a pin header, and route GND to the adjacent pin header, allowing me to easily put the buttons</p>
+            <p>For the LCDs, I added 2 4-pin headers</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/schematics.png' | relative_url }}" 
+                    alt="PCB Schematics" 
                     class="modal-img">
-                <figcaption>Inspiration</figcaption>
             </figure>
-            <p>I had thought for trying the make the clock with the rocker piece. However, I realised that it was overcomplicating the design, so I decided against it, and just used regular buttons</p>
+            <p>Once I added and linked all the components, I switched to PCB view.</p>
+            <p>I made sure that the lines were 16 mm to ensure that the wires will not be too thin during milling and flake off</p>
+            <p>I also tried to make the pcb smaller, leaving a reasonable space to still do soldering</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock_2.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/PCB.png' | relative_url }}" 
+                    alt="PCB" 
                     class="modal-img">
-                <figcaption>Something like this</figcaption>
             </figure>
         </div>
 
         <div>
             <h3 class="text-center">PCB Making</h3>
-            <p>For my final project, I was thinking what could be fun and interesting for me to make. 
-                As a chess player, I realised that a chess clock could be a good idea as it was fun and could also show some of the skills I learnt from the lessons</p>
+            <p>With the help from Mr Chew, I did the milling for my PCB</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/milling.jpg' | relative_url }}" 
+                    alt="PCB Milling" 
                     class="modal-img">
-                <figcaption>Inspiration</figcaption>
             </figure>
-            <p>I had thought for trying the make the clock with the rocker piece. However, I realised that it was overcomplicating the design, so I decided against it, and just used regular buttons</p>
+            <p>I forgot to take a photo of my pcb finish milling, so there is no image for it</p>
+            <p>After I cleaned up the PCB, I started soldering the pin headers and XIAO ESP32 C3 to it.</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock_2.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/soldered.jpg' | relative_url }}" 
+                    alt="Soldered PCB" 
                     class="modal-img">
-                <figcaption>Something like this</figcaption>
             </figure>
         </div>
 
         <div>
             <h3 class="text-center">CNC Cutting</h3>
-            <p>For my final project, I was thinking what could be fun and interesting for me to make. 
-                As a chess player, I realised that a chess clock could be a good idea as it was fun and could also show some of the skills I learnt from the lessons</p>
+            <p>For this section, I took the parts I created in my design to be cut out by the CNC machine, and layed out the sketches of them flat in fusion</p>
+            <p>I also add the dogbones in fusion so that the dogbones in the actual design would be smaller</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/cnc_sketches.png' | relative_url }}" 
+                    alt="CNC Sketches" 
                     class="modal-img">
-                <figcaption>Inspiration</figcaption>
             </figure>
-            <p>I had thought for trying the make the clock with the rocker piece. However, I realised that it was overcomplicating the design, so I decided against it, and just used regular buttons</p>
+            <p>Next, I tested the design in VCarve Pro. I set the thickness at 14.5 mm as that was what I used before</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock_2.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/VCarve_2D.png' | relative_url }}" 
+                    alt="VCarve 2D Toolpath" 
                     class="modal-img">
-                <figcaption>Something like this</figcaption>
+                <figcaption>2D Toolpath</figcaption>
+            </figure>
+            <figure class="d-inline-block mx-2">
+                <img src="{{ 'images/Final/VCarve_3D.png' | relative_url }}" 
+                    alt="VCarve 3D Toolpath" 
+                    class="modal-img">
+                <figcaption>3D Toolpath</figcaption>
             </figure>
         </div>
 
         <div>
             <h3 class="text-center">3D Printing</h3>
-            <p>For my final project, I was thinking what could be fun and interesting for me to make. 
-                As a chess player, I realised that a chess clock could be a good idea as it was fun and could also show some of the skills I learnt from the lessons</p>
+            <p>Once everything looked good, I went to get them cut out</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/cutting1.jpg' | relative_url }}" 
+                    alt="Cutting 1" 
                     class="modal-img">
-                <figcaption>Inspiration</figcaption>
             </figure>
-            <p>I had thought for trying the make the clock with the rocker piece. However, I realised that it was overcomplicating the design, so I decided against it, and just used regular buttons</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock_2.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/cutting2.jpg' | relative_url }}" 
+                    alt="Cutting 2" 
                     class="modal-img">
-                <figcaption>Something like this</figcaption>
+            </figure>
+            <figure class="d-inline-block mx-2">
+                <img src="{{ 'images/Final/cutout.jpg' | relative_url }}" 
+                    alt="CNC Parts (Cutout)" 
+                    class="modal-img">
+                <figcaption>Cutout CNC Parts</figcaption>
             </figure>
         </div>
 
         <div>
             <h3 class="text-center">Coding(Arduino)</h3>
-            <p>For my final project, I was thinking what could be fun and interesting for me to make. 
-                As a chess player, I realised that a chess clock could be a good idea as it was fun and could also show some of the skills I learnt from the lessons</p>
+            <p>I decided to use Arduino over Micropython as Arduino has a larger library, lessening the amount of code I might need</p>
+            <p>I had a few features I wanted to implement such as custom big numbers, preset timings, and the ability to set a custom timing using a web app connected to the ESP32 c3's own hotspot</p>
             <figure class="d-inline-block mx-2">
                 <img src="{{ 'images/Final/chess_clock.jpeg' | relative_url }}" 
                     alt="Chess Clock" 
                     class="modal-img">
-                <figcaption>Inspiration</figcaption>
             </figure>
-            <p>I had thought for trying the make the clock with the rocker piece. However, I realised that it was overcomplicating the design, so I decided against it, and just used regular buttons</p>
+            <!-- Code section label -->
+            <p class="text-uppercase text-secondary fw-semibold mb-2" style="font-size: 0.75rem; letter-spacing: 0.1em;">Source Code</p>
+            <pre class="code-block rounded p-3" style="background:#0d1117; border:1px solid #30363d; overflow-x:auto; font-size:0.8rem; line-height:1.6;"><code class="text-light">#include &lt;Arduino.h&gt;
+#define USE_SERIAL_1602_LCD
+#include &quot;LCDBigNumbers.hpp&quot;
+#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+#include &lt;Wire.h&gt;
+#include &lt;ESPmDNS.h&gt;
+
+// ================= WIFI AP CONFIG =================
+const char* AP_SSID = &quot;ChessTimer&quot;;
+const char* AP_PASS = &quot;chess123&quot;;
+
+WebServer server(80);
+
+// ================= DISPLAY =================
+LiquidCrystal_I2C lcd1(0x26, LCD_COLUMNS, LCD_ROWS);
+LiquidCrystal_I2C lcd2(0x27, LCD_COLUMNS, LCD_ROWS);
+
+LCDBigNumbers big1(&amp;lcd1, BIG_NUMBERS_FONT_1_COLUMN_2_ROWS_VARIANT_1);
+LCDBigNumbers big2(&amp;lcd2, BIG_NUMBERS_FONT_1_COLUMN_2_ROWS_VARIANT_1);
+
+// ================= BUTTONS =================
+// Port 3  (BTN_P1)      — Controls LCD1 (end p1 turn / select white for LCD1)
+// Port 10 (BTN_P2)      — Controls LCD2 (end p2 turn / select white for LCD2)
+// Port 5  (BTN_POWER)   — Hold 2.5s: on/off | Short press: select/confirm preset (menu) | start clock (startup)
+// Port 4  (BTN_MENU)    — Hold 2.5s: open preset menu | Short press inside menu: cycle left
+// Port 8  (BTN_FORWARD) — Hold 2.5s: show web UI reminder + unlock web timing
+#define BTN_P1      3
+#define BTN_POWER   5
+#define BTN_MENU    4
+#define BTN_FORWARD 8
+#define BTN_P2      10
+
+// ================= STATE =================
+bool clockOn = false;
+bool running = false;
+bool player1Turn = true;
+bool inMenu = false;
+bool p1IsWhite = true;
+bool paused = false;
+
+unsigned long lastTick = 0;
+
+// ================= TIME =================
+unsigned long p1Time = 0;
+unsigned long p2Time = 0;
+int incrementSeconds = 0;
+
+// ================= PRESETS =================
+struct Preset { int hours; int minutes; int seconds; int increment; };
+Preset presets[] = {
+  {0,  1, 0,  0},  // 1 min
+  {0, 10, 0,  0},  // 10 min
+  {0, 30, 0,  0},  // 30 min
+  {0,  3, 2,  2},  // 3|2
+  {0,  5, 3,  3},  // 5|3
+  {0, 15, 10, 10},  // 15|10
+  {1, 30, 30, 30},  // 90|30
+};
+const int NUM_PRESETS = sizeof(presets)/sizeof(Preset);
+int presetIndex = 4;
+
+// ================= BUTTON STATES =================
+bool prevP1      = HIGH;
+bool prevP2      = HIGH;
+bool prevPower   = HIGH;
+bool prevMenu    = HIGH;
+bool prevForward = HIGH;
+
+// ================= HOLD TIMERS =================
+unsigned long powerHoldStart   = 0;
+unsigned long menuHoldStart    = 0;
+unsigned long forwardHoldStart = 0;
+
+// ================= FLAGS =================
+bool presetConfirmed  = false;
+bool showingReminder  = false;
+bool webUnlocked      = false;
+#define ONE_COLUMN_SPACE_CHARACTER &#x27; &#x27;
+
+// ================= REMINDER SCREEN STATE =================
+unsigned long lastReminderSwitch = 0;
+bool reminderShowingPass         = false;
+
+// ================= BIG W AND L (2 wide x 2 tall) =================
+byte W_TL[8] = { 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001 };
+byte W_BL[8] = { 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, 0b11111, 0b11111 };
+byte W_TR[8] = { 0b10011, 0b10011, 0b10011, 0b10011, 0b10011, 0b10011, 0b10011, 0b10011 };
+byte W_BR[8] = { 0b10011, 0b10011, 0b10011, 0b10011, 0b10011, 0b10011, 0b11111, 0b11111 };
+byte L_TL[8] = { 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000 };
+byte L_BL[8] = { 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11111, 0b11111 };
+byte L_TR[8] = { 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000 };
+byte L_BR[8] = { 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b11111, 0b11111 };
+
+#define CHAR_W_TL 0
+#define CHAR_W_BL 1
+#define CHAR_W_TR 2
+#define CHAR_W_BR 3
+#define CHAR_L_TL 4
+#define CHAR_L_BL 5
+#define CHAR_L_TR 6
+#define CHAR_L_BR 7
+
+// ================= FORWARD DECLARATIONS =================
+void drawStartupScreen();
+void drawPresetScreen();
+void drawTimes();
+void applyPreset();
+void drawTime(LCDBigNumbers &amp;big, LiquidCrystal_I2C &amp;lcd, unsigned long totalSeconds, int startColumn);
+void drawWinnerScreen(bool p1Wins);
+void resetToPreset();
+void loadWinnerChars(LiquidCrystal_I2C &amp;lcd);
+void printBigW(LiquidCrystal_I2C &amp;lcd, int col);
+void printBigL(LiquidCrystal_I2C &amp;lcd, int col);
+void handlePower();
+void handleMenu();
+void updateClock();
+void handleTurns();
+void handleStartupPlayerSelection();
+void checkPresetEntry();
+void checkStartClock();
+void checkWebUIReminder();
+void drawReminderScreen(bool showPass);
+void updateReminderScreen();
+
+// ================= READ BUTTON EDGES =================
+bool buttonPressed(bool &amp;prevState, int pin) {
+  bool current = digitalRead(pin);
+  if (prevState == HIGH &amp;&amp; current == LOW) {
+    prevState = LOW;
+    return true;
+  }
+  if (current == HIGH) prevState = HIGH;
+  return false;
+}
+
+// ================= WEB SERVER HTML =================
+const char INDEX_HTML[] PROGMEM = R&quot;rawliteral(
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Chess Clock Config&lt;/title&gt;
+  &lt;style&gt;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: &#x27;Segoe UI&#x27;, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; color: #e2c97e; letter-spacing: 2px; }
+    p.subtitle { color: #888; margin-bottom: 32px; font-size: 0.9rem; }
+    .card {
+      background: #16213e;
+      border: 1px solid #0f3460;
+      border-radius: 16px;
+      padding: 28px;
+      width: 100%;
+      max-width: 480px;
+      margin-bottom: 16px;
+    }
+    .card h2 { font-size: 1rem; color: #e2c97e; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    .fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .fields-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+    .field label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+    .field input {
+      width: 100%;
+      background: #0f3460;
+      border: 1px solid #1a4a8a;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.4rem;
+      padding: 10px;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus { border-color: #e2c97e; }
+    .field input:disabled { opacity: 0.4; }
+    .field input.error { border-color: #f44336; }
+    .same-time { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-size: 0.85rem; color: #888; cursor: pointer; }
+    .same-time input[type=checkbox] { width: 16px; height: 16px; accent-color: #e2c97e; cursor: pointer; }
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 1px;
+      background: #e2c97e;
+      color: #1a1a2e;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    button:active { transform: scale(0.97); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    #status { margin-top: 16px; font-size: 0.85rem; text-align: center; min-height: 20px; color: #888; }
+    #status.ok  { color: #4caf50; }
+    #status.err { color: #f44336; }
+    .presets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 4px; }
+    .preset-btn {
+      padding: 10px 4px;
+      background: #0f3460;
+      color: #e2c97e;
+      border: 1px solid #1a4a8a;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.2s;
+      line-height: 1.4;
+    }
+    .preset-btn:hover { background: #1a4a8a; }
+    .preset-btn .inc { font-size: 0.65rem; color: #aaa; display: block; }
+    .inc-note { font-size: 0.75rem; color: #888; margin-top: 8px; }
+    #lockMsg { text-align: center; color: #e2c97e; font-size: 0.85rem; margin-bottom: 12px; display: none; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;&amp;#9822; Chess Timer&lt;/h1&gt;
+  &lt;p class=&quot;subtitle&quot;&gt;Join &lt;strong&gt;ChessTimer&lt;/strong&gt; WiFi then visit &lt;strong&gt;chesstimer.local&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h2&gt;Quick Presets&lt;/h2&gt;
+    &lt;div class=&quot;presets&quot;&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,1,0,0,0,1,0,0)&quot;&gt;1 min&lt;span class=&quot;inc&quot;&gt;no inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,10,0,0,0,10,0,0)&quot;&gt;10 min&lt;span class=&quot;inc&quot;&gt;no inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,30,0,0,0,30,0,0)&quot;&gt;30 min&lt;span class=&quot;inc&quot;&gt;no inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,3,0,2,0,3,0,2)&quot;&gt;3 | 2&lt;span class=&quot;inc&quot;&gt;+2s inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,5,0,3,0,5,0,3)&quot;&gt;5 | 3&lt;span class=&quot;inc&quot;&gt;+3s inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(0,15,0,10,0,15,0,10)&quot;&gt;15 | 10&lt;span class=&quot;inc&quot;&gt;+10s inc&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;preset-btn&quot; onclick=&quot;setPreset(1,30,0,30,1,30,0,30)&quot;&gt;90 | 30&lt;span class=&quot;inc&quot;&gt;+30s inc&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;inc-note&quot;&gt;Format: &lt;strong&gt;time | increment&lt;/strong&gt; &amp;mdash; e.g. 3 | 2 = 3 min + 2s per move&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h2&gt;&amp;#11014; Player 1 (White)&lt;/h2&gt;
+    &lt;div class=&quot;fields-4&quot;&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Hours&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p1h&quot; min=&quot;0&quot; max=&quot;23&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Minutes&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p1m&quot; min=&quot;0&quot; max=&quot;59&quot; value=&quot;5&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Seconds&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p1s&quot; min=&quot;0&quot; max=&quot;59&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;+Inc (s)&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;inc1&quot; min=&quot;0&quot; max=&quot;300&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h2&gt;&amp;#11015; Player 2 (Black)&lt;/h2&gt;
+    &lt;div class=&quot;fields-4&quot;&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Hours&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p2h&quot; min=&quot;0&quot; max=&quot;23&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Minutes&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p2m&quot; min=&quot;0&quot; max=&quot;59&quot; value=&quot;5&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Seconds&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;p2s&quot; min=&quot;0&quot; max=&quot;59&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;field&quot;&gt;&lt;label&gt;+Inc (s)&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;inc2&quot; min=&quot;0&quot; max=&quot;300&quot; value=&quot;0&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;label class=&quot;same-time&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; id=&quot;sameTime&quot; checked onchange=&quot;syncTimes()&quot;&gt;
+      Same time as Player 1
+    &lt;/label&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;div id=&quot;lockMsg&quot;&gt;&amp;#128274; Hold the web button on the clock first&lt;/div&gt;
+    &lt;button id=&quot;btnSend&quot; onclick=&quot;sendTiming()&quot;&gt;Send to Clock&lt;/button&gt;
+    &lt;div id=&quot;status&quot;&gt;Checking clock status...&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    let unlocked = false;
+    let statusInterval = null;
+
+    async function checkStatus() {
+      try {
+        const res = await fetch(&#x27;/status&#x27;);
+        const text = await res.text();
+        unlocked = text === &#x27;unlocked&#x27;;
+        updateLockUI();
+      } catch(e) {
+        setStatus(&#x27;Cannot reach clock.&#x27;, &#x27;err&#x27;);
+      }
+    }
+
+    function updateLockUI() {
+      const btn = document.getElementById(&#x27;btnSend&#x27;);
+      const msg = document.getElementById(&#x27;lockMsg&#x27;);
+      if (unlocked) {
+        btn.disabled = false;
+        msg.style.display = &#x27;none&#x27;;
+        setStatus(&#x27;Ready&#x27;, &#x27;&#x27;);
+      } else {
+        btn.disabled = true;
+        msg.style.display = &#x27;block&#x27;;
+        setStatus(&#x27;&#x27;, &#x27;&#x27;);
+      }
+    }
+
+    [&#x27;p1h&#x27;,&#x27;p1m&#x27;,&#x27;p1s&#x27;,&#x27;inc1&#x27;].forEach(id =&gt; {
+      document.getElementById(id).addEventListener(&#x27;input&#x27;, () =&gt; {
+        if (document.getElementById(&#x27;sameTime&#x27;).checked) syncTimes();
+      });
+    });
+
+    function syncTimes() {
+      const checked = document.getElementById(&#x27;sameTime&#x27;).checked;
+      if (checked) {
+        document.getElementById(&#x27;p2h&#x27;).value  = document.getElementById(&#x27;p1h&#x27;).value;
+        document.getElementById(&#x27;p2m&#x27;).value  = document.getElementById(&#x27;p1m&#x27;).value;
+        document.getElementById(&#x27;p2s&#x27;).value  = document.getElementById(&#x27;p1s&#x27;).value;
+        document.getElementById(&#x27;inc2&#x27;).value = document.getElementById(&#x27;inc1&#x27;).value;
+      }
+      document.getElementById(&#x27;p2h&#x27;).disabled  = checked;
+      document.getElementById(&#x27;p2m&#x27;).disabled  = checked;
+      document.getElementById(&#x27;p2s&#x27;).disabled  = checked;
+      document.getElementById(&#x27;inc2&#x27;).disabled = checked;
+    }
+
+    function setPreset(p1h, p1m, p1s, i1, p2h, p2m, p2s, i2) {
+      document.getElementById(&#x27;p1h&#x27;).value  = p1h;
+      document.getElementById(&#x27;p1m&#x27;).value  = p1m;
+      document.getElementById(&#x27;p1s&#x27;).value  = p1s;
+      document.getElementById(&#x27;inc1&#x27;).value = i1;
+      document.getElementById(&#x27;p2h&#x27;).value  = p2h;
+      document.getElementById(&#x27;p2m&#x27;).value  = p2m;
+      document.getElementById(&#x27;p2s&#x27;).value  = p2s;
+      document.getElementById(&#x27;inc2&#x27;).value = i2;
+      syncTimes();
+    }
+
+    function clamp(v, mn, mx) { return Math.min(Math.max(parseInt(v) || 0, mn), mx); }
+
+    function validate() {
+      let ok = true;
+      const limits = { p1h:[0,23], p1m:[0,59], p1s:[0,59], inc1:[0,300],
+                       p2h:[0,23], p2m:[0,59], p2s:[0,59], inc2:[0,300] };
+      Object.entries(limits).forEach(([id, [mn, mx]]) =&gt; {
+        const el = document.getElementById(id);
+        const v = parseInt(el.value) || 0;
+        if (v &lt; mn || v &gt; mx) { el.classList.add(&#x27;error&#x27;); ok = false; }
+        else el.classList.remove(&#x27;error&#x27;);
+      });
+      const p1total = clamp(document.getElementById(&#x27;p1h&#x27;).value,0,23)*3600
+                    + clamp(document.getElementById(&#x27;p1m&#x27;).value,0,59)*60
+                    + clamp(document.getElementById(&#x27;p1s&#x27;).value,0,59);
+      const p2total = clamp(document.getElementById(&#x27;p2h&#x27;).value,0,23)*3600
+                    + clamp(document.getElementById(&#x27;p2m&#x27;).value,0,59)*60
+                    + clamp(document.getElementById(&#x27;p2s&#x27;).value,0,59);
+      if (p1total === 0) { setStatus(&#x27;Player 1 time cannot be zero.&#x27;, &#x27;err&#x27;); ok = false; }
+      else if (p2total === 0) { setStatus(&#x27;Player 2 time cannot be zero.&#x27;, &#x27;err&#x27;); ok = false; }
+      return ok;
+    }
+
+    async function sendTiming() {
+      if (!unlocked) { setStatus(&#x27;Hold the web button on the clock first.&#x27;, &#x27;err&#x27;); return; }
+      if (!validate()) return;
+      const p1h  = clamp(document.getElementById(&#x27;p1h&#x27;).value,  0, 23);
+      const p1m  = clamp(document.getElementById(&#x27;p1m&#x27;).value,  0, 59);
+      const p1s  = clamp(document.getElementById(&#x27;p1s&#x27;).value,  0, 59);
+      const inc1 = clamp(document.getElementById(&#x27;inc1&#x27;).value, 0, 300);
+      const p2h  = clamp(document.getElementById(&#x27;p2h&#x27;).value,  0, 23);
+      const p2m  = clamp(document.getElementById(&#x27;p2m&#x27;).value,  0, 59);
+      const p2s  = clamp(document.getElementById(&#x27;p2s&#x27;).value,  0, 59);
+      const inc2 = clamp(document.getElementById(&#x27;inc2&#x27;).value, 0, 300);
+      try {
+        const res = await fetch(&#x27;/set&#x27;, {
+          method: &#x27;POST&#x27;,
+          headers: { &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27; },
+          body: `p1h=${p1h}&amp;p1m=${p1m}&amp;p1s=${p1s}&amp;inc1=${inc1}&amp;p2h=${p2h}&amp;p2m=${p2m}&amp;p2s=${p2s}&amp;inc2=${inc2}`
+        });
+        const text = await res.text();
+        if (text === &#x27;OK&#x27;) {
+          clearInterval(statusInterval);
+          statusInterval = null;
+          document.getElementById(&#x27;lockMsg&#x27;).style.display = &#x27;none&#x27;;
+          document.getElementById(&#x27;btnSend&#x27;).disabled = false;
+          setStatus(&#x27;&amp;#10003; Timing sent! Clock is ready to start.&#x27;, &#x27;ok&#x27;);
+        } else {
+          setStatus(&#x27;Error: &#x27; + text, &#x27;err&#x27;);
+        }
+      } catch(e) {
+        setStatus(&#x27;Failed to reach clock: &#x27; + e.message, &#x27;err&#x27;);
+      }
+    }
+
+    function setStatus(msg, cls) {
+      const el = document.getElementById(&#x27;status&#x27;);
+      el.innerHTML = msg;
+      el.className = cls;
+    }
+
+    syncTimes();
+    checkStatus();
+    statusInterval = setInterval(checkStatus, 2000);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+)rawliteral&quot;;
+
+// ================= WEB SERVER HANDLERS =================
+void handleRoot() {
+  server.send(200, &quot;text/html&quot;, INDEX_HTML);
+}
+
+void handleStatus() {
+  server.send(200, &quot;text/plain&quot;, webUnlocked ? &quot;unlocked&quot; : &quot;locked&quot;);
+}
+
+void handleSet() {
+  if (!webUnlocked) { server.send(403, &quot;text/plain&quot;, &quot;Hold BTN8 on the clock first&quot;); return; }
+  if (!server.hasArg(&quot;p1h&quot;)) { server.send(400, &quot;text/plain&quot;, &quot;Bad request&quot;); return; }
+
+  int p1h = constrain(server.arg(&quot;p1h&quot;).toInt(), 0, 23);
+  int p1m = constrain(server.arg(&quot;p1m&quot;).toInt(), 0, 59);
+  int p1s = constrain(server.arg(&quot;p1s&quot;).toInt(), 0, 59);
+  int p2h = constrain(server.arg(&quot;p2h&quot;).toInt(), 0, 23);
+  int p2m = constrain(server.arg(&quot;p2m&quot;).toInt(), 0, 59);
+  int p2s = constrain(server.arg(&quot;p2s&quot;).toInt(), 0, 59);
+  int inc = constrain(server.arg(&quot;inc&quot;).toInt(), 0, 300);
+
+  unsigned long t1 = p1h * 3600UL + p1m * 60UL + p1s;
+  unsigned long t2 = p2h * 3600UL + p2m * 60UL + p2s;
+
+  if (t1 == 0) { server.send(400, &quot;text/plain&quot;, &quot;Player 1 time cannot be zero&quot;); return; }
+  if (t2 == 0) { server.send(400, &quot;text/plain&quot;, &quot;Player 2 time cannot be zero&quot;); return; }
+
+  p1Time = t1;
+  p2Time = t2;
+  incrementSeconds = inc;
+  presetConfirmed = true;
+  showingReminder  = false;
+  webUnlocked      = false;
+  running = false;
+  prevP1 = HIGH; prevP2 = HIGH;
+  big1.begin(); big2.begin();
+  drawStartupScreen();
+
+  server.send(200, &quot;text/plain&quot;, &quot;OK&quot;);
+}
+
+// ================= SETUP =================
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(BTN_P1,      INPUT_PULLUP);
+  pinMode(BTN_P2,      INPUT_PULLUP);
+  pinMode(BTN_POWER,   INPUT_PULLUP);
+  pinMode(BTN_MENU,    INPUT_PULLUP);
+  pinMode(BTN_FORWARD, INPUT_PULLUP);
+
+  Wire.begin(6, 7);
+  Wire.setTimeout(250);
+
+  lcd1.init(); lcd1.clear(); lcd1.noBacklight(); big1.begin();
+  lcd2.init(); lcd2.clear(); lcd2.noBacklight(); big2.begin();
+
+  WiFi.softAP(AP_SSID, AP_PASS);
+  delay(100);
+  MDNS.begin(&quot;chesstimer&quot;); // http://chesstimer.local
+
+  server.on(&quot;/&quot;,       HTTP_GET,  handleRoot);
+  server.on(&quot;/status&quot;, HTTP_GET,  handleStatus);
+  server.on(&quot;/set&quot;,    HTTP_POST, handleSet);
+  server.begin();
+
+  Serial.println(&quot;AP: &quot; + String(AP_SSID));
+  Serial.println(&quot;IP: &quot; + WiFi.softAPIP().toString());
+  Serial.println(&quot;URL: http://chesstimer.local&quot;);
+}
+
+// ================= LOOP =================
+void loop() {
+  server.handleClient();
+
+  handlePower();
+
+  if (!clockOn) return;
+
+  if (showingReminder) {
+    updateReminderScreen();
+    return;
+  }
+
+  if (inMenu) {
+    handleMenu();
+  } else if (running) {
+    updateClock();
+    handleTurns();
+  } else {
+    handleStartupPlayerSelection();
+    checkPresetEntry();
+    checkWebUIReminder();
+    checkStartClock();
+  }
+}
+
+// ================= POWER HANDLING =================
+void handlePower() {
+  if (digitalRead(BTN_POWER) == LOW) {
+    if (powerHoldStart == 0) powerHoldStart = millis();
+    if (millis() - powerHoldStart &gt; 2500) {
+      powerHoldStart = 0;
+      prevPower = HIGH;
+      if (!clockOn) {
+        lcd1.init(); lcd1.backlight(); big1.begin();
+        lcd2.init(); lcd2.backlight(); big2.begin();
+        p1Time = 0; p2Time = 0;
+        running = false;
+        player1Turn = true;
+        inMenu = false;
+        presetConfirmed = false;
+        showingReminder = false;
+        webUnlocked     = false;
+        clockOn = true;
+        drawStartupScreen();
+      } else {
+        running = false; inMenu = false; clockOn = false;
+        showingReminder = false;
+        webUnlocked     = false;
+        lcd1.clear(); lcd1.noBacklight();
+        lcd2.clear(); lcd2.noBacklight();
+      }
+    }
+  } else {
+    powerHoldStart = 0;
+  }
+}
+
+// ================= STARTUP PLAYER SELECTION =================
+void handleStartupPlayerSelection() {
+  if (!running &amp;&amp; !inMenu) {
+    if (buttonPressed(prevP1, BTN_P1)) { p1IsWhite = true;  drawStartupScreen(); }
+    if (buttonPressed(prevP2, BTN_P2)) { p1IsWhite = false; drawStartupScreen(); }
+  }
+}
+
+// ================= CHECK PRESET ENTRY =================
+void checkPresetEntry() {
+  unsigned long now = millis();
+  if (digitalRead(BTN_MENU) == LOW) {
+    if (menuHoldStart == 0) menuHoldStart = now;
+    if (now - menuHoldStart &gt; 2500) {
+      menuHoldStart = 0;
+      prevMenu = HIGH;
+      inMenu = true;
+      presetConfirmed = false;
+      drawPresetScreen();
+    }
+  } else {
+    menuHoldStart = 0;
+  }
+}
+
+// ================= WEB UI REMINDER =================
+void checkWebUIReminder() {
+  unsigned long now = millis();
+  if (digitalRead(BTN_FORWARD) == LOW) {
+    if (forwardHoldStart == 0) forwardHoldStart = now;
+    if (now - forwardHoldStart &gt; 2500) {
+      forwardHoldStart = 0;
+      prevForward = HIGH;
+      showingReminder      = true;
+      webUnlocked          = true;
+      reminderShowingPass  = false;
+      lastReminderSwitch   = millis();
+      drawReminderScreen(false);
+    }
+  } else {
+    forwardHoldStart = 0;
+  }
+}
+
+// ================= DRAW REMINDER SCREEN =================
+void drawReminderScreen(bool showPass) {
+  lcd1.clear(); lcd2.clear();
+  lcd1.setCursor(0, 0); lcd1.print(&quot;WiFi:&quot;);
+  lcd1.setCursor(0, 1); lcd1.print(AP_SSID);
+  if (!showPass) {
+    lcd2.setCursor(0, 0); lcd2.print(&quot;Password:&quot;);
+    lcd2.setCursor(0, 1); lcd2.print(AP_PASS);
+  } else {
+    lcd2.setCursor(0, 0); lcd2.print(&quot;Then visit:&quot;);
+    lcd2.setCursor(0, 1); lcd2.print(&quot;chesstimer.local&quot;);
+  }
+}
+
+// ================= UPDATE REMINDER SCREEN =================
+void updateReminderScreen() {
+  unsigned long now = millis();
+  if (now - lastReminderSwitch &gt; 3000) {
+    lastReminderSwitch   = now;
+    reminderShowingPass  = !reminderShowingPass;
+    drawReminderScreen(reminderShowingPass);
+  }
+}
+
+// ================= MENU HANDLING =================
+void handleMenu() {
+  if (buttonPressed(prevForward, BTN_FORWARD)) {
+    presetIndex = (presetIndex + 1) % NUM_PRESETS;
+    presetConfirmed = false;
+    drawPresetScreen();
+  }
+  if (buttonPressed(prevMenu, BTN_MENU)) {
+    presetIndex = (presetIndex - 1 + NUM_PRESETS) % NUM_PRESETS;
+    presetConfirmed = false;
+    drawPresetScreen();
+  }
+  if (buttonPressed(prevPower, BTN_POWER)) {
+    if (!presetConfirmed) {
+      presetConfirmed = true;
+      applyPreset();
+      drawPresetScreen();
+    } else {
+      inMenu = false;
+      running = false;
+      drawStartupScreen();
+    }
+  }
+}
+
+// ================= DRAW PRESET SCREEN =================
+void drawPresetScreen() {
+  lcd1.clear();
+  lcd2.clear();
+
+  Preset p = presets[presetIndex];
+
+  big1.setBigNumberCursor(4);
+  big1.print(p.hours); big1.print(ONE_COLUMN_SPACE_CHARACTER);
+  if (p.minutes &lt; 10) big1.print(&#x27;0&#x27;); big1.print(p.minutes); big1.print(ONE_COLUMN_SPACE_CHARACTER);
+  if (p.seconds &lt; 10) big1.print(&#x27;0&#x27;); big1.print(p.seconds);
+
+  if (p.increment &gt; 0) {
+    lcd1.setCursor(0, 0); lcd1.print(&quot;+&quot;); lcd1.print(p.increment); lcd1.print(&quot;s&quot;);
+  }
+
+  big2.setBigNumberCursor(5);
+  if (presetConfirmed) {
+    big2.print(p.hours); big2.print(ONE_COLUMN_SPACE_CHARACTER);
+    if (p.minutes &lt; 10) big2.print(&#x27;0&#x27;); big2.print(p.minutes); big2.print(ONE_COLUMN_SPACE_CHARACTER);
+    if (p.seconds &lt; 10) big2.print(&#x27;0&#x27;); big2.print(p.seconds);
+    if (p.increment &gt; 0) {
+      lcd2.setCursor(0, 0); lcd2.print(&quot;+&quot;); lcd2.print(p.increment); lcd2.print(&quot;s&quot;);
+    }
+  } else {
+    unsigned long h = p1Time / 3600;
+    int m = (p1Time % 3600) / 60;
+    int s = p1Time % 60;
+    big2.print(h); big2.print(ONE_COLUMN_SPACE_CHARACTER);
+    if (m &lt; 10) big2.print(&#x27;0&#x27;); big2.print(m); big2.print(ONE_COLUMN_SPACE_CHARACTER);
+    if (s &lt; 10) big2.print(&#x27;0&#x27;); big2.print(s);
+  }
+}
+
+// ================= APPLY PRESET =================
+void applyPreset() {
+  Preset p = presets[presetIndex];
+  p1Time = p2Time = p.hours * 3600UL + p.minutes * 60UL + p.seconds;
+  incrementSeconds = p.increment;
+}
+
+// ================= STARTUP SCREEN =================
+void drawStartupScreen() {
+  lcd1.clear(); lcd2.clear();
+  drawTimes();
+  if (p1IsWhite) {
+    lcd1.setCursor(15, 1); lcd1.print(&quot;W&quot;);
+    lcd2.setCursor(0,  1); lcd2.print(&quot;B&quot;);
+  } else {
+    lcd1.setCursor(15, 1); lcd1.print(&quot;B&quot;);
+    lcd2.setCursor(0,  1); lcd2.print(&quot;W&quot;);
+  }
+}
+
+// ================= START CLOCK =================
+void checkStartClock() {
+  if (!presetConfirmed || running) return;
+  if (buttonPressed(prevPower, BTN_POWER)) {
+    running = true;
+    player1Turn = p1IsWhite;
+    lastTick = millis();
+    prevP1 = HIGH;
+    prevP2 = HIGH;
+    drawTimes();
+  }
+}
+
+// ================= CLOCK =================
+void updateClock() {
+  unsigned long now = millis();
+  if (now - lastTick &gt;= 1000 &amp;&amp; !paused) {
+    lastTick = now;
+    if (player1Turn  &amp;&amp; p1Time &gt; 0) p1Time--;
+    if (!player1Turn &amp;&amp; p2Time &gt; 0) p2Time--;
+    if (p1Time == 0 &amp;&amp; player1Turn)  { drawWinnerScreen(false); delay(5000); resetToPreset(); return; }
+    if (p2Time == 0 &amp;&amp; !player1Turn) { drawWinnerScreen(true);  delay(5000); resetToPreset(); return; }
+    drawTimes();
+  }
+}
+
+// ================= HANDLE TURNS =================
+void handleTurns() {
+  if (buttonPressed(prevPower, BTN_POWER)) {
+      paused = !paused;
+      if (!paused) {
+        lastTick = millis();
+        drawTimes();
+      }
+    }
+  bool p1Pressed = buttonPressed(prevP1, BTN_P1);
+  bool p2Pressed = buttonPressed(prevP2, BTN_P2);
+  if (p1Pressed &amp;&amp; player1Turn)  { player1Turn = false; if (incrementSeconds &gt; 0) p1Time += incrementSeconds; drawTimes(); }
+  if (p2Pressed &amp;&amp; !player1Turn) { player1Turn = true;  if (incrementSeconds &gt; 0) p2Time += incrementSeconds; drawTimes(); }
+}
+
+// ================= WINNER SCREEN =================
+void loadWinnerChars(LiquidCrystal_I2C &amp;lcd) {
+  lcd.createChar(CHAR_W_TL, W_TL); lcd.createChar(CHAR_W_BL, W_BL);
+  lcd.createChar(CHAR_W_TR, W_TR); lcd.createChar(CHAR_W_BR, W_BR);
+  lcd.createChar(CHAR_L_TL, L_TL); lcd.createChar(CHAR_L_BL, L_BL);
+  lcd.createChar(CHAR_L_TR, L_TR); lcd.createChar(CHAR_L_BR, L_BR);
+}
+
+void printBigW(LiquidCrystal_I2C &amp;lcd, int col) {
+  lcd.setCursor(col, 0); lcd.write(byte(CHAR_W_TL)); lcd.write(byte(CHAR_W_TR));
+  lcd.setCursor(col, 1); lcd.write(byte(CHAR_W_BL)); lcd.write(byte(CHAR_W_BR));
+}
+
+void printBigL(LiquidCrystal_I2C &amp;lcd, int col) {
+  lcd.setCursor(col, 0); lcd.write(byte(CHAR_L_TL)); lcd.write(byte(CHAR_L_TR));
+  lcd.setCursor(col, 1); lcd.write(byte(CHAR_L_BL)); lcd.write(byte(CHAR_L_BR));
+}
+
+void drawWinnerScreen(bool p1Wins) {
+  lcd1.clear(); lcd2.clear();
+  loadWinnerChars(lcd1); loadWinnerChars(lcd2);
+  if (p1Wins) { printBigW(lcd1, 7); printBigL(lcd2, 7); }
+  else        { printBigL(lcd1, 7); printBigW(lcd2, 7); }
+}
+
+// ================= RESET TO PRESET =================
+void resetToPreset() {
+  applyPreset();
+  running = false;
+  player1Turn = p1IsWhite;
+  prevP1 = HIGH; prevP2 = HIGH;
+  big1.begin(); big2.begin();
+  drawStartupScreen();
+}
+
+// ================= DRAW TIME =================
+void drawTime(LCDBigNumbers &amp;big, LiquidCrystal_I2C &amp;lcd, unsigned long totalSeconds, int startColumn) {
+  unsigned long hours   = totalSeconds / 3600;
+  unsigned long minutes = (totalSeconds % 3600) / 60;
+  unsigned long seconds = totalSeconds % 60;
+  big.setBigNumberCursor(startColumn);
+  big.print(hours); big.print(ONE_COLUMN_SPACE_CHARACTER);
+  if (minutes &lt; 10) big.print(&#x27;0&#x27;); big.print(minutes); big.print(ONE_COLUMN_SPACE_CHARACTER);
+  if (seconds &lt; 10) big.print(&#x27;0&#x27;); big.print(seconds);
+}
+
+// ================= DRAW TIMES =================
+void drawTimes() {
+  drawTime(big1, lcd1, p1Time, 4);
+  drawTime(big2, lcd2, p2Time, 5);
+}
+</code></pre>
+            <!-- Preview button -->
+            <a href="chessTimer.html" target="_blank" class="btn btn-outline-warning mb-4">
+            &#9822; Open Web App Preview &nearr;
+            </a>
+        </div>
+
+        <div>
+            <h3 class="text-center">Assembly</h3>
+            <p>With the help from Mr Chew, I did the milling for my PCB</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock_2.jpeg' | relative_url }}" 
-                    alt="Chess Clock" 
+                <img src="{{ 'images/Final/milling.jpg' | relative_url }}" 
+                    alt="PCB Milling" 
                     class="modal-img">
-                <figcaption>Something like this</figcaption>
+            </figure>
+            <p>I forgot to take a photo of my pcb finish milling, so there is no image for it</p>
+            <p>After I cleaned up the PCB, I started soldering the pin headers and XIAO ESP32 C3 to it.</p>
+            <figure class="d-inline-block mx-2">
+                <img src="{{ 'images/Final/soldered.jpg' | relative_url }}" 
+                    alt="Soldered PCB" 
+                    class="modal-img">
             </figure>
         </div>
 

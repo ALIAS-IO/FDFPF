@@ -1,45 +1,13 @@
-#include <Arduino.h>
-
-// List the pins you want to test
-const byte testPins[] = {2, 3, 4, 5, 6, 7, 8, 9, 10};
-const byte numPins = sizeof(testPins);
-
-bool lastState[numPins];
+const int analogPin = D0;  // use a voltage divider to bring 5V down to 3.3V safe range
 
 void setup() {
-  Serial.begin(9600);
-  while (!Serial);
-
-  Serial.println("=== PORT BUTTON TESTER ===");
-
-  for (byte i = 0; i < numPins; i++) {
-    pinMode(testPins[i], INPUT_PULLUP);
-    lastState[i] = digitalRead(testPins[i]);
-  }
+  Serial.begin(115200);
 }
 
 void loop() {
-  for (byte i = 0; i < numPins; i++) {
-    bool currentState = digitalRead(testPins[i]);
-
-    // Detect state change
-    if (currentState != lastState[i]) {
-      delay(10); // simple debounce
-
-      currentState = digitalRead(testPins[i]);
-
-      if (currentState != lastState[i]) {
-
-        if (currentState == LOW) {
-          Serial.print("Button PRESSED on pin ");
-          Serial.println(testPins[i]);
-        } else {
-          Serial.print("Button RELEASED on pin ");
-          Serial.println(testPins[i]);
-        }
-
-        lastState[i] = currentState;
-      }
-    }
-  }
+  int raw = analogRead(analogPin);
+  float voltage = raw * (3.3 / 4095.0);  // ESP32-C3 is 12-bit ADC
+  Serial.print("Voltage on pin: ");
+  Serial.println(voltage);
+  delay(500);
 }
