@@ -214,8 +214,9 @@ section.bg-light { background-color: #111; }
 }
 
 figure {
-    display: block;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 figcaption {
