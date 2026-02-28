@@ -207,9 +207,14 @@ section.bg-light { background-color: #111; }
     font-weight: bold;
 }
 
-figure {
+.modal-body figure {
     display: inline-block;
     margin: 0 10px;
+    text-align: center;
+}
+
+figure {
+    display: block;
     text-align: center;
 }
 

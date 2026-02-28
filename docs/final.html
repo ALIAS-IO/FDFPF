@@ -16,11 +16,11 @@ permalink: /final/
     <div class="row g-4 justify-content-center">
 
         <div>
-            <h3 class="text-center">Ideation</h3>
+            <h3 class="text-center mb-3">Ideation</h3>
             <p>For my final project, I was thinking what could be fun and interesting for me to make. 
                 As a chess player, I realised that a chess clock could be a good idea as it was fun and could also show some of the skills I learnt from the lessons</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/chess_clock.jpeg' | relative_url }}" 
+                <img src="{{ 'images/Final/chess_clock.jpg' | relative_url }}" 
                     alt="Chess Clock" 
                     class="modal-img">
                 <figcaption>Inspiration</figcaption>
@@ -35,7 +35,7 @@ permalink: /final/
         </div>
 
         <div>
-            <h3 class="text-center">Model Designing</h3>
+            <h3 class="text-center mb-3">Model Designing</h3>
             <p>Below is my final iteration of my design (without some extra parts)</p>
             <div class="my-3" style="width: 100%; height: 600px;">
             <iframe
@@ -64,7 +64,7 @@ permalink: /final/
         </div>
 
         <div>
-            <h3 class="text-center">PCB Designing</h3>
+            <h3 class="text-center mb-3">PCB Designing</h3>
             <p>For my design, I needed 5 buttons and 2 LCDs at least. I originally thought of putting a buzzer in but decided against it</p>
             <p>I decided to use surface mount pin headers as all my components wuld be coming from on top the clock.</p>
             <p>I added 2 7-pin headers for the buttons, connected a GPIO pin for each button to a pin header, and route GND to the adjacent pin header, allowing me to easily put the buttons</p>
@@ -85,7 +85,7 @@ permalink: /final/
         </div>
 
         <div>
-            <h3 class="text-center">PCB Making</h3>
+            <h3 class="text-center mb-3">PCB Making</h3>
             <p>With the help from Mr Chew, I did the milling for my PCB</p>
             <figure class="d-inline-block mx-2">
                 <img src="{{ 'images/Final/milling.jpg' | relative_url }}" 
@@ -102,7 +102,7 @@ permalink: /final/
         </div>
 
         <div>
-            <h3 class="text-center">CNC Cutting</h3>
+            <h3 class="text-center mb-3">CNC Cutting</h3>
             <p>For this section, I took the parts I created in my design to be cut out by the CNC machine, and layed out the sketches of them flat in fusion</p>
             <p>I also add the dogbones in fusion so that the dogbones in the actual design would be smaller</p>
             <figure class="d-inline-block mx-2">
@@ -126,7 +126,7 @@ permalink: /final/
         </div>
 
         <div>
-            <h3 class="text-center">3D Printing</h3>
+            <h3 class="text-center mb-3">3D Printing</h3>
             <p>Once everything looked good, I went to get them cut out</p>
             <figure class="d-inline-block mx-2">
                 <img src="{{ 'images/Final/cutting1.jpg' | relative_url }}" 
@@ -147,7 +147,7 @@ permalink: /final/
         </div>
 
         <div>
-            <h3 class="text-center">Coding(Arduino)</h3>
+            <h3 class="text-center mb-3">Coding(Arduino)</h3>
             <p>I decided to use Arduino over Micropython as Arduino has a larger library, lessening the amount of code I might need</p>
             <p>I had a few features I wanted to implement such as custom big numbers, preset timings, and the ability to set a custom timing using a web app connected to the ESP32 c3's own hotspot</p>
             <figure class="d-inline-block mx-2">
@@ -937,7 +937,7 @@ void drawTimes() {
         </div>
 
         <div>
-            <h3 class="text-center">Assembly</h3>
+            <h3 class="text-center mb-3">Assembly</h3>
             <p>With everything working, I tested out the clock when assembled.</p>
             <figure class="d-inline-block mx-2">
                 <img src="{{ 'images/Final/assembling.jpg' | relative_url }}" 
@@ -949,13 +949,13 @@ void drawTimes() {
             </p>
             <p>With that, I have my final project</p>
             <figure class="d-inline-block mx-2">
-                <img src="{{ 'images/Final/assembled.jpg' | relative_url }}" 
+                <img src="{{ 'images/Final/assembled_final.jpg' | relative_url }}" 
                     alt="Chess Clock" 
                     class="modal-img">
             </figure>
         </div>
         <div>
-            <h3 class="text-center">Poster</h3>
+            <h3 class="text-center mb-3">Poster</h3>
             <figure class="d-inline-block mx-2">
                 <img src="{{ 'images/Final/Chess Clock CA2 FDFPF Poster.png' | relative_url }}" 
                     alt="Chess Clock Poster" 
@@ -963,15 +963,15 @@ void drawTimes() {
             </figure>
         </div>
         <div>
-            <h3 class="text-center">Video</h3>
-            <video controls width="100%">
-                <source src="{{ 'images/Final/CA2_video.mp4' | relative_url }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <h3 class="text-center mb-3">Video</h3>
+            <iframe width="100%" height="500"
+                src="https://www.youtube.com/embed/QIQcIUtnipo"
+                frameborder="0" allowfullscreen>
+            </iframe>
         </div>
 
         <div>
-            <h3 class="text-center">Reflection</h3>
+            <h3 class="text-center mb-3">Reflection</h3>
             <p>Looking back, making a chess clock was not the best idea as using the plywood made the final product quite large, and not very portable, like I had intended.
               Maybe, I can have tried using a single lcd instead and planned out my 3D printing better. But overall, I am proud with the chess clock I have created as my final project.
             </p>
